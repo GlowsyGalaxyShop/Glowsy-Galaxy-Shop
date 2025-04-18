@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Glowsy Galaxy Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #ffffff;
+      color: #333;
+    }
+
+    header {
+      background-color: #e3f2fd;
+      color: #1e2a38;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      justify-content: space-between;
+    }
+
+    header h1 {
+      font-size: 0.5rem;
+      margin-right: 20px;
+      background: linear-gradient(270deg, #ff8a00, #e52e71, #6a11cb, #ff8a00);
+      background-size: 600% 600%;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 8s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .search-bar input {
+      width: 250px;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    nav {
+      background-color: #34495e;
+      padding: 10px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #f39c12;
+      transform: translateY(-5px);
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #f39c12;
+      transform: scaleX(0);
+      transform-origin: bottom right;
+      transition: transform 0.3s ease-out;
+    }
+
+    nav a:hover::before {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+    .carousel-container {
+      overflow-x: auto;
+      overflow-y: hidden;
+      display: flex;
+      padding: 20px 10px;
+    }
+
+    .carousel-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .product-card {
+      flex: 0 0 240px;
+      margin-right: 15px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: scale(1.03);
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .product-info {
+      padding: 10px;
+    }
+
+    .product-info h3 {
+      font-size: 1rem;
+      margin: 5px 0;
+    }
+
+    .product-info p {
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    .price {
+      font-size: 1.1rem;
+      color: #27ae60;
+      font-weight: bold;
+      margin: 8px 0;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #f39c12;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .btn:hover {
+      background-color: #c87509;
+    }
+
+    footer {
+      background-color: #1e2a38;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    section#contact {
+      padding: 40px;
+      background: #ffffff;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      background-image: url('https://via.placeholder.com/1200x500');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-content {
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      max-width: 600px;
+    }
+
+    .hero h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .cta-btn {
+      background-color: #f39c12;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 5px;
+    }
+
+    .cta-btn:hover {
+      background-color: #c87509;
+    }
+
+    /* Testimonials Section */
+    .testimonials {
+      padding: 40px;
+      background-color: #f8f8f8;
+      text-align: center;
+    }
+
+    .testimonials h3 {
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    .testimonial-card {
+      background-color: white;
+      margin: 15px;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      display: inline-block;
+      vertical-align: top;
+      text-align: center;
+    }
+
+    .testimonial-card p {
+      font-size: 1rem;
+      font-style: italic;
+      color: #555;
+    }
+
+    .testimonial-card h4 {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Glowsy Galaxy Shop</h1>
+  <div class="search-bar">
+    <input type="text" placeholder="Search products..." />
+  </div>
+</header>
+
+<nav>
+  <a href="#carousel">Trending</a>
+  <a href="#">Shop</a>
+  <a href="#contact">Contact</a>
+  <a href="#">About</a>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+    <h2>Welcome to Glowsy Galaxy Shop!</h2>
+    <p>Enhance your home with premium LED mirrors and stylish home decor. Shop now and shine bright!</p>
+    <a href="#" class="cta-btn">Shop Now</a>
+  </div>
+</section>
+
+<!-- Product Carousel Section -->
+<section class="carousel-container" id="carousel">
+  <div class="product-card">
+    <div class="product-image">
+      <img src="https://via.placeholder.com/300x160" alt="Product 1">
+    </div>
+    <div class="product-info">
+      <h3>Led Mirror 2.2</h3>
+      <p>Condition: Excellent</p>
+      <div class="price">₹2999.99</div>
+      <a href="#" class="btn">Add to Cart</a>
+    </div>
+  </div>
+
+  <div class="product-card">
+    <div class="product-image">
+      <img src="https://via.placeholder.com/300x160" alt="Product 2">
+    </div>
+    <div class="product-info">
+      <h3>Led Mirror</h3>
+      <p>Condition: Good</p>
+      <div class="price">₹1999.99</div>
+      <a href="#" class="btn">Add to Cart</a>
+    </div>
+  </div>
+
+  <div class="product-card">
+    <div class="product-image">
+      <img src="https://via.placeholder.com/300x160" alt="Product 3">
+    </div>
+    <div class="product-info">
+      <h3>LED Mirror 1.0</h3>
+      <p>Condition: Like New</p>
+      <div class="price">₹1599.99</div>
+      <a href="#" class="btn">Add to Cart</a>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials">
+  <h3>What Our Customers Say</h3>
+  <div class="testimonial-card">
+    <p>"The LED mirrors from Glowsy Galaxy Shop are stunning! My living room has never looked better."</p>
+    <h4>Rahul Tiwari.</h4>
+  </div>
+
+  <div class="testimonial-card">
+    <p>"Amazing quality and fast delivery. Highly recommend their products!"</p>
+    <h4>Arnav Sharma</h4>
+    </div>
+    
+    <div class="testimonial-card">
+    <p>"Overall Product quality is good and delivery was so fast"</p>
+    <h4>Ankit Mishra</h4>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+  <h3>Contact Us</h3>
+  <p>Email: support@glowsygalaxyshop.com</p>
+</section>
+
+<footer>
+  <p>&copy; 2025 Glowsy Galaxy Shop. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
