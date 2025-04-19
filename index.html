@@ -23,7 +23,7 @@
     }
 
     header h1 {
-      font-size: 0.5rem;
+      font-size: 1.2rem;
       margin-right: 20px;
       background: linear-gradient(270deg, #ff8a00, #e52e71, #6a11cb, #ff8a00);
       background-size: 600% 600%;
@@ -152,6 +152,8 @@
       text-decoration: none;
       font-weight: 600;
       font-size: 0.9rem;
+      cursor: pointer;
+      border: none;
     }
 
     .btn:hover {
@@ -171,7 +173,6 @@
       background: #ffffff;
     }
 
-    /* Hero Section */
     .hero {
       position: relative;
       width: 100%;
@@ -218,17 +219,10 @@
       background-color: #c87509;
     }
 
-    /* Testimonials Section */
     .testimonials {
       padding: 40px;
       background-color: #f8f8f8;
       text-align: center;
-    }
-
-    .testimonials h3 {
-      font-size: 1.8rem;
-      margin-bottom: 30px;
-      font-weight: 600;
     }
 
     .testimonial-card {
@@ -243,16 +237,50 @@
       text-align: center;
     }
 
-    .testimonial-card p {
-      font-size: 1rem;
-      font-style: italic;
-      color: #555;
+    /* Buy Modal */
+    #buy-options-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
     }
 
-    .testimonial-card h4 {
-      font-size: 1.1rem;
-      font-weight: bold;
-      color: #333;
+    #buy-options-modal .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      text-align: center;
+    }
+
+    #buy-options-modal button, #buy-options-modal a {
+      margin: 10px 0;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    #buy-options-modal button[disabled] {
+      background: gray;
+      color: white;
+      border: none;
+    }
+
+    #buy-options-modal a {
+      background: #25D366;
+      color: white;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    #buy-options-modal #close-modal-btn {
+      background: #ccc;
+      border: none;
+      color: black;
     }
 
   </style>
@@ -278,7 +306,7 @@
   <div class="hero-content">
     <h2>Welcome to Glowsy Galaxy Shop!</h2>
     <p>Enhance your home with premium LED mirrors and stylish home decor. Shop now and shine bright!</p>
-    <a href="#" class="cta-btn">Shop Now</a>
+    <a href="#carousel" class="cta-btn">Shop Now</a>
   </div>
 </section>
 
@@ -292,7 +320,7 @@
       <h3>Led Mirror 2.2</h3>
       <p>Condition: Excellent</p>
       <div class="price">₹2999.99</div>
-      <a href="#" class="btn">Add to Cart</a>
+      <button class="btn buy-now-btn">Buy Now</button>
     </div>
   </div>
 
@@ -304,7 +332,7 @@
       <h3>Led Mirror</h3>
       <p>Condition: Good</p>
       <div class="price">₹1999.99</div>
-      <a href="#" class="btn">Add to Cart</a>
+      <button class="btn buy-now-btn">Buy Now</button>
     </div>
   </div>
 
@@ -316,7 +344,7 @@
       <h3>LED Mirror 1.0</h3>
       <p>Condition: Like New</p>
       <div class="price">₹1599.99</div>
-      <a href="#" class="btn">Add to Cart</a>
+      <button class="btn buy-now-btn">Buy Now</button>
     </div>
   </div>
 </section>
@@ -326,15 +354,15 @@
   <h3>What Our Customers Say</h3>
   <div class="testimonial-card">
     <p>"The LED mirrors from Glowsy Galaxy Shop are stunning! My living room has never looked better."</p>
-    <h4>Rahul Tiwari.</h4>
+    <h4>Rahul Tiwari</h4>
   </div>
 
   <div class="testimonial-card">
     <p>"Amazing quality and fast delivery. Highly recommend their products!"</p>
     <h4>Arnav Sharma</h4>
-    </div>
+  </div>
     
-    <div class="testimonial-card">
+  <div class="testimonial-card">
     <p>"Overall Product quality is good and delivery was so fast"</p>
     <h4>Ankit Mishra</h4>
   </div>
@@ -343,12 +371,38 @@
 <!-- Contact Section -->
 <section id="contact">
   <h3>Contact Us</h3>
-  <p>Email: support@glowsygalaxyshop.com</p>
+  <p>Email: glowsygalaxyshopgmail.com</p>
 </section>
 
 <footer>
   <p>&copy; 2025 Glowsy Galaxy Shop. All rights reserved.</p>
 </footer>
+
+<!-- Modal -->
+<div id="buy-options-modal">
+  <div class="modal-content">
+    <h3>Choose Purchase Option</h3>
+    <button disabled>Buy Online (Coming Soon)</button><br>
+    <a href="https://wa.me/9871486231" target="_blank">Buy via WhatsApp</a><br>
+    <button id="close-modal-btn">Close</button>
+  </div>
+</div>
+
+<script>
+  function openBuyOptionsModal() {
+    document.getElementById('buy-options-modal').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('buy-options-modal').style.display = 'none';
+  }
+
+  document.getElementById('close-modal-btn').onclick = closeModal;
+
+  document.querySelectorAll('.buy-now-btn').forEach(function(button) {
+    button.addEventListener('click', openBuyOptionsModal);
+  });
+</script>
 
 </body>
 </html>
