@@ -20,10 +20,11 @@
       align-items: center;
       padding: 10px 20px;
       justify-content: space-between;
+      position: relative;
     }
 
     header h1 {
-      font-size: 0.6rem; /* Reduced size */
+      font-size: 0.6rem;
       margin-right: 20px;
       background: linear-gradient(270deg, #ff8a00, #e52e71, #6a11cb, #ff8a00);
       background-size: 600% 600%;
@@ -46,6 +47,39 @@
       border-radius: 6px;
       border: none;
       font-size: 1rem;
+    }
+
+    .hamburger {
+      font-size: 26px;
+      margin-left: 15px;
+      cursor: pointer;
+      user-select: none;
+      padding: 6px 10px;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      border-radius: 6px;
+      display: none;
+      flex-direction: column;
+      z-index: 100;
+      min-width: 150px;
+    }
+
+    .dropdown-menu a {
+      padding: 10px 15px;
+      text-decoration: none;
+      color: #333;
+      border-bottom: 1px solid #eee;
+      transition: background 0.2s;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: #f1f1f1;
     }
 
     nav {
@@ -283,14 +317,30 @@
       color: black;
     }
 
+    @media (max-width: 768px) {
+      .search-bar input {
+        width: 180px;
+      }
+    }
   </style>
 </head>
 <body>
 
 <header>
   <h1>Glowsy Galaxy Shop</h1>
-  <div class="search-bar">
-    <input type="text" placeholder="Search products..." />
+  <div style="display: flex; align-items: center;">
+    <div class="search-bar">
+      <input type="text" placeholder="Search products..." />
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+    <div class="dropdown-menu" id="dropdownMenu">
+      <a href="#">Home</a>
+      <a href="#">Shop</a>
+      <a href="#carousel">Trending</a>
+      <a href="#">Cart</a>
+      <a href="#contact">Contact</a>
+      <a href="#">About</a>
+    </div>
   </div>
 </header>
 
@@ -301,7 +351,6 @@
   <a href="#">About</a>
 </nav>
 
-<!-- Hero Section -->
 <section class="hero">
   <div class="hero-content">
     <h2>Welcome to Glowsy Galaxy Shop!</h2>
@@ -310,7 +359,6 @@
   </div>
 </section>
 
-<!-- Product Carousel Section -->
 <section class="carousel-container" id="carousel">
   <div class="product-card">
     <div class="product-image">
@@ -349,7 +397,6 @@
   </div>
 </section>
 
-<!-- Testimonials Section -->
 <section class="testimonials">
   <h3>What Our Customers Say</h3>
   <div class="testimonial-card">
@@ -368,7 +415,6 @@
   </div>
 </section>
 
-<!-- Contact Section -->
 <section id="contact">
   <h3>Contact Us</h3>
   <p>Email: glowsygalaxyshop@gmail.com</p>
@@ -401,6 +447,18 @@
 
   document.querySelectorAll('.buy-now-btn').forEach(function(button) {
     button.addEventListener('click', openBuyOptionsModal);
+  });
+
+  function toggleMenu() {
+    const menu = document.getElementById('dropdownMenu');
+    menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+  }
+
+  window.addEventListener('click', function(e) {
+    const menu = document.getElementById('dropdownMenu');
+    if (!e.target.closest('.hamburger') && !e.target.closest('#dropdownMenu')) {
+      menu.style.display = 'none';
+    }
   });
 </script>
 
