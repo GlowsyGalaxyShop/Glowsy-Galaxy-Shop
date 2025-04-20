@@ -6,13 +6,18 @@
   <title>Glowsy Galaxy Shop</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      width: 100%;
+      overflow-x: hidden;
+      font-family: 'Poppins', sans-serif;
       background-color: #ffffff;
       color: #333;
     }
-
     header {
       background-color: #e3f2fd;
       color: #1e2a38;
@@ -22,9 +27,8 @@
       justify-content: space-between;
       position: relative;
     }
-
     header h1 {
-      font-size: 0.6rem;
+      font-size: 0.5rem;
       margin-right: 20px;
       background: linear-gradient(270deg, #ff8a00, #e52e71, #6a11cb, #ff8a00);
       background-size: 600% 600%;
@@ -34,29 +38,25 @@
       -webkit-text-fill-color: transparent;
       animation: gradientShift 8s ease infinite;
     }
-
     @keyframes gradientShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
     .search-bar input {
-      width: 250px;
+      width: 210px;
       padding: 10px;
       border-radius: 6px;
       border: none;
       font-size: 1rem;
     }
-
     .hamburger {
       font-size: 26px;
-      margin-left: 15px;
+      margin-left: 015px;
       cursor: pointer;
       user-select: none;
       padding: 6px 10px;
     }
-
     .dropdown-menu {
       position: absolute;
       top: 60px;
@@ -69,7 +69,6 @@
       z-index: 100;
       min-width: 150px;
     }
-
     .dropdown-menu a {
       padding: 10px 15px;
       text-decoration: none;
@@ -77,11 +76,9 @@
       border-bottom: 1px solid #eee;
       transition: background 0.2s;
     }
-
     .dropdown-menu a:hover {
       background-color: #f1f1f1;
     }
-
     nav {
       background-color: #34495e;
       padding: 10px;
@@ -90,7 +87,6 @@
       justify-content: center;
       align-items: center;
     }
-
     nav a {
       color: white;
       margin: 0 15px;
@@ -99,12 +95,10 @@
       position: relative;
       transition: all 0.3s ease;
     }
-
     nav a:hover {
       color: #f39c12;
       transform: translateY(-5px);
     }
-
     nav a::before {
       content: '';
       position: absolute;
@@ -117,25 +111,25 @@
       transform-origin: bottom right;
       transition: transform 0.3s ease-out;
     }
-
     nav a:hover::before {
       transform: scaleX(1);
       transform-origin: bottom left;
     }
-
     .carousel-container {
+      display: flex;
       overflow-x: auto;
       overflow-y: hidden;
-      display: flex;
       padding: 20px 10px;
+      flex-wrap: nowrap;
+      scroll-behavior: smooth;
+      max-width: 100vw;
     }
-
     .carousel-container::-webkit-scrollbar {
       display: none;
     }
-
     .product-card {
-      flex: 0 0 240px;
+      flex: 0 0 auto;
+      width: 240px;
       margin-right: 15px;
       background: white;
       border-radius: 10px;
@@ -143,11 +137,9 @@
       text-align: center;
       transition: transform 0.3s ease;
     }
-
     .product-card:hover {
       transform: scale(1.03);
     }
-
     .product-image img {
       width: 100%;
       height: 150px;
@@ -155,28 +147,23 @@
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
     }
-
     .product-info {
       padding: 10px;
     }
-
     .product-info h3 {
       font-size: 1rem;
       margin: 5px 0;
     }
-
     .product-info p {
       font-size: 0.85rem;
       color: #888;
     }
-
     .price {
       font-size: 1.1rem;
       color: #27ae60;
       font-weight: bold;
       margin: 8px 0;
     }
-
     .btn {
       display: inline-block;
       background-color: #f39c12;
@@ -189,11 +176,9 @@
       cursor: pointer;
       border: none;
     }
-
     .btn:hover {
       background-color: #c87509;
     }
-
     footer {
       background-color: #1e2a38;
       color: white;
@@ -201,12 +186,10 @@
       text-align: center;
       margin-top: 40px;
     }
-
     section#contact {
       padding: 40px;
       background: #ffffff;
     }
-
     .hero {
       position: relative;
       width: 100%;
@@ -220,25 +203,21 @@
       justify-content: center;
       align-items: center;
     }
-
     .hero-content {
       padding: 20px;
       background: rgba(0, 0, 0, 0.5);
       border-radius: 10px;
       max-width: 600px;
     }
-
     .hero h2 {
       font-size: 2rem;
       margin-bottom: 10px;
       font-weight: 600;
     }
-
     .hero p {
       font-size: 1.2rem;
       margin-bottom: 20px;
     }
-
     .cta-btn {
       background-color: #f39c12;
       color: white;
@@ -248,17 +227,14 @@
       font-size: 1rem;
       border-radius: 5px;
     }
-
     .cta-btn:hover {
       background-color: #c87509;
     }
-
     .testimonials {
       padding: 40px;
       background-color: #f8f8f8;
       text-align: center;
     }
-
     .testimonial-card {
       background-color: white;
       margin: 15px;
@@ -270,197 +246,110 @@
       vertical-align: top;
       text-align: center;
     }
-
-    /* Buy Modal */
-    #buy-options-modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
+    .testimonial-card h4 {
+      margin-top: 10px; /* Added space between review and name */
     }
-
-    #buy-options-modal .modal-content {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      width: 300px;
-      text-align: center;
-    }
-
-    #buy-options-modal button, #buy-options-modal a {
-      margin: 10px 0;
-      padding: 10px 20px;
-      border-radius: 5px;
-      font-size: 1rem;
-    }
-
-    #buy-options-modal button[disabled] {
-      background: gray;
-      color: white;
-      border: none;
-    }
-
-    #buy-options-modal a {
-      background: #25D366;
-      color: white;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    #buy-options-modal #close-modal-btn {
-      background: #ccc;
-      border: none;
-      color: black;
-    }
-
-    @media (max-width: 768px) {
-      .search-bar input {
-        width: 180px;
-      }
+    .dropdown-menu.show {
+      display: flex;
     }
   </style>
 </head>
 <body>
-
-<header>
-  <h1>Glowsy Galaxy Shop</h1>
-  <div style="display: flex; align-items: center;">
-    <div class="search-bar">
-      <input type="text" placeholder="Search products..." />
+  <header>
+    <h1>Glowsy Galaxy Shop</h1>
+    <div style="display: flex; align-items: center;">
+      <div class="search-bar">
+        <input type="text" placeholder="Search products..." />
+      </div>
+      <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+      <div class="dropdown-menu" id="dropdownMenu">
+        <a href="#">Home</a>
+        <a href="#">Shop</a>
+        <a href="#carousel">Trending</a>
+        <a href="#">Cart</a>
+        <a href="#contact">Contact</a>
+        <a href="#">About</a>
+      </div>
     </div>
-    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
-    <div class="dropdown-menu" id="dropdownMenu">
-      <a href="#">Home</a>
-      <a href="#">Shop</a>
-      <a href="#carousel">Trending</a>
-      <a href="#">Cart</a>
-      <a href="#contact">Contact</a>
-      <a href="#">About</a>
+  </header>
+  <nav>
+    <a href="#carousel">Trending</a>
+    <a href="#">Shop</a>
+    <a href="#contact">Contact</a>
+    <a href="#">About</a>
+  </nav>
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Welcome to Glowsy Galaxy Shop!</h2>
+      <p>Enhance your home with premium LED mirrors and stylish home decor. Shop now and shine bright!</p>
+      <a href="#carousel" class="cta-btn">Shop Now</a>
     </div>
-  </div>
-</header>
-
-<nav>
-  <a href="#carousel">Trending</a>
-  <a href="#">Shop</a>
-  <a href="#contact">Contact</a>
-  <a href="#">About</a>
-</nav>
-
-<section class="hero">
-  <div class="hero-content">
-    <h2>Welcome to Glowsy Galaxy Shop!</h2>
-    <p>Enhance your home with premium LED mirrors and stylish home decor. Shop now and shine bright!</p>
-    <a href="#carousel" class="cta-btn">Shop Now</a>
-  </div>
-</section>
-
-<section class="carousel-container" id="carousel">
-  <div class="product-card">
-    <div class="product-image">
-      <img src="https://via.placeholder.com/300x160" alt="Product 1">
+  </section>
+  <section class="carousel-container" id="carousel">
+    <div class="product-card">
+      <div class="product-image">
+        <img src="https://via.placeholder.com/300x160" alt="Product 1">
+      </div>
+      <div class="product-info">
+        <h3>Led Mirror 2.2</h3>
+        <p>Condition: Excellent</p>
+        <div class="price">₹2999.99</div>
+        <a href="https://wa.me/9871486231?text=I%20am%20interested%20in%20Led%20Mirror%202.2%20from%20Glowsy%20Galaxy%20Shop"
+           class="btn">Buy Now</a>
+      </div>
     </div>
-    <div class="product-info">
-      <h3>Led Mirror 2.2</h3>
-      <p>Condition: Excellent</p>
-      <div class="price">₹2999.99</div>
-      <button class="btn buy-now-btn">Buy Now</button>
+    <div class="product-card">
+      <div class="product-image">
+        <img src="https://via.placeholder.com/300x160" alt="Product 2">
+      </div>
+      <div class="product-info">
+        <h3>Led Mirror</h3>
+        <p>Condition: Good</p>
+        <div class="price">₹1999.99</div>
+        <a href="https://wa.me/9871486231?text=I%20am%20interested%20in%20Led%20Mirror%20from%20Glowsy%20Galaxy%20Shop"
+           class="btn">Buy Now</a>
+      </div>
     </div>
-  </div>
-
-  <div class="product-card">
-    <div class="product-image">
-      <img src="https://via.placeholder.com/300x160" alt="Product 2">
+    <div class="product-card">
+      <div class="product-image">
+        <img src="https://via.placeholder.com/300x160" alt="Product 3">
+      </div>
+      <div class="product-info">
+        <h3>LED Mirror 1.0</h3>
+        <p>Condition: Like New</p>
+        <div class="price">₹1599.99</div>
+        <a href="https://wa.me/9871486231?text=I%20am%20interested%20in%20LED%20Mirror%201.0%20from%20Glowsy%20Galaxy%20Shop"
+           class="btn">Buy Now</a>
+      </div>
     </div>
-    <div class="product-info">
-      <h3>Led Mirror</h3>
-      <p>Condition: Good</p>
-      <div class="price">₹1999.99</div>
-      <button class="btn buy-now-btn">Buy Now</button>
+  </section>
+  <section class="testimonials">
+    <h3>What Our Customers Say</h3>
+    <div class="testimonial-card">
+      <p>"The LED mirrors from Glowsy Galaxy Shop are stunning! My living room has never looked better."</p>
+      <h4>Rahul Tiwari</h4>
     </div>
-  </div>
-
-  <div class="product-card">
-    <div class="product-image">
-      <img src="https://via.placeholder.com/300x160" alt="Product 3">
+    <div class="testimonial-card">
+      <p>"Amazing quality and fast delivery. Highly recommend their products!"</p>
+      <h4>Arnav Sharma</h4>
     </div>
-    <div class="product-info">
-      <h3>LED Mirror 1.0</h3>
-      <p>Condition: Like New</p>
-      <div class="price">₹1599.99</div>
-      <button class="btn buy-now-btn">Buy Now</button>
+    <div class="testimonial-card">
+      <p>"Overall Product quality is good and delivery was so fast"</p>
+      <h4>Ankit Mishra</h4>
     </div>
-  </div>
-</section>
-
-<section class="testimonials">
-  <h3>What Our Customers Say</h3>
-  <div class="testimonial-card">
-    <p>"The LED mirrors from Glowsy Galaxy Shop are stunning! My living room has never looked better."</p>
-    <h4>Rahul Tiwari</h4>
-  </div>
-
-  <div class="testimonial-card">
-    <p>"Amazing quality and fast delivery. Highly recommend their products!"</p>
-    <h4>Arnav Sharma</h4>
-  </div>
-
-  <div class="testimonial-card">
-    <p>"Overall Product quality is good and delivery was so fast"</p>
-    <h4>Ankit Mishra</h4>
-  </div>
-</section>
-
-<section id="contact">
-  <h3>Contact Us</h3>
-  <p>Email: glowsygalaxyshop@gmail.com</p>
-</section>
-
-<footer>
-  <p>&copy; 2025 Glowsy Galaxy Shop. All rights reserved.</p>
-</footer>
-
-<!-- Modal -->
-<div id="buy-options-modal">
-  <div class="modal-content">
-    <h3>Choose Purchase Option</h3>
-    <button disabled>Buy Online (Coming Soon)</button><br>
-    <a href="https://wa.me/9871486231" target="_blank">Buy via WhatsApp</a><br>
-    <button id="close-modal-btn">Close</button>
-  </div>
-</div>
-
-<script>
-  function openBuyOptionsModal() {
-    document.getElementById('buy-options-modal').style.display = 'flex';
-  }
-
-  function closeModal() {
-    document.getElementById('buy-options-modal').style.display = 'none';
-  }
-
-  document.getElementById('close-modal-btn').onclick = closeModal;
-
-  document.querySelectorAll('.buy-now-btn').forEach(function(button) {
-    button.addEventListener('click', openBuyOptionsModal);
-  });
-
-  function toggleMenu() {
-    const menu = document.getElementById('dropdownMenu');
-    menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
-  }
-
-  window.addEventListener('click', function(e) {
-    const menu = document.getElementById('dropdownMenu');
-    if (!e.target.closest('.hamburger') && !e.target.closest('#dropdownMenu')) {
-      menu.style.display = 'none';
+  </section>
+  <section id="contact">
+    <h3>Contact Us</h3>
+    <p>Email: glowsygalaxyshop@gmail.com</p>
+  </section>
+  <footer>
+    <p>&copy; 2025 Glowsy Galaxy Shop. All rights reserved.</p>
+  </footer>
+  <script>
+    function toggleMenu() {
+      var menu = document.getElementById('dropdownMenu');
+      menu.classList.toggle('show');
     }
-  });
-</script>
-
+  </script>
 </body>
 </html>
