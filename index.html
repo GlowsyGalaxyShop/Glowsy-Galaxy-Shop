@@ -56,38 +56,29 @@
       cursor: pointer;
       user-select: none;
       padding: 6px 10px;
-      background-color: #f39c12;
-      color: #fff;
-      border-radius: 6px;
     }
     .dropdown-menu {
       position: absolute;
       top: 60px;
-      right: 10px;
+      right: 20px;
       background-color: #fff;
       box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      border-radius: 8px;
+      border-radius: 6px;
       display: none;
       flex-direction: column;
       z-index: 100;
-      min-width: 170px;
-      overflow: hidden;
+      min-width: 150px;
     }
     .dropdown-menu a {
-      padding: 12px 18px;
+      padding: 10px 15px;
       text-decoration: none;
       color: #333;
       border-bottom: 1px solid #eee;
       transition: background 0.2s;
-      font-weight: 600;
     }
     .dropdown-menu a:hover {
       background-color: #f1f1f1;
     }
-    .dropdown-menu.show {
-      display: flex;
-    }
-    /* NAV and REST SAME */
     nav {
       background-color: #34495e;
       padding: 10px;
@@ -258,6 +249,9 @@
     .testimonial-card h4 {
       margin-top: 10px;
     }
+    .dropdown-menu.show {
+      display: flex;
+    }
   </style>
 </head>
 <body>
@@ -292,10 +286,54 @@
     </div>
   </section>
   <section class="carousel-container" id="carousel">
-    <!-- Product cards here (same as your code) -->
+    <div class="product-card">
+      <div class="product-image">
+        <img src="https://via.placeholder.com/300x160" alt="Product 1">
+      </div>
+      <div class="product-info">
+        <h3>Led Mirror 2.2</h3>
+        <p>Condition: Excellent</p>
+        <div class="price">₹2999.99</div>
+        <a href="https://wa.me/9871486231?text=I%20am%20interested%20in%20Led%20Mirror%202.2%20from%20Glowsy%20Galaxy%20Shop" class="btn">Buy Now</a>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-image">
+        <img src="https://via.placeholder.com/300x160" alt="Product 2">
+      </div>
+      <div class="product-info">
+        <h3>Led Mirror</h3>
+        <p>Condition: Good</p>
+        <div class="price">₹1999.99</div>
+        <a href="https://wa.me/9871486231?text=I%20am%20interested%20in%20Led%20Mirror%20from%20Glowsy%20Galaxy%20Shop" class="btn">Buy Now</a>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-image">
+        <img src="https://via.placeholder.com/300x160" alt="Product 3">
+      </div>
+      <div class="product-info">
+        <h3>LED Mirror 1.0</h3>
+        <p>Condition: Like New</p>
+        <div class="price">₹1599.99</div>
+        <a href="https://wa.me/9871486231?text=I%20am%20interested%20in%20LED%20Mirror%201.0%20from%20Glowsy%20Galaxy%20Shop" class="btn">Buy Now</a>
+      </div>
+    </div>
   </section>
   <section class="testimonials">
-    <!-- Testimonials section (same) -->
+    <h3>What Our Customers Say</h3>
+    <div class="testimonial-card">
+      <p>"The LED mirrors from Glowsy Galaxy Shop are stunning! My living room has never looked better."</p>
+      <h4>Rahul Tiwari</h4>
+    </div>
+    <div class="testimonial-card">
+      <p>"Amazing quality and fast delivery. Highly recommend their products!"</p>
+      <h4>Arnav Sharma</h4>
+    </div>
+    <div class="testimonial-card">
+      <p>"Overall Product quality is good and delivery was so fast"</p>
+      <h4>Ankit Mishra</h4>
+    </div>
   </section>
   <section id="contact">
     <h3>Contact Us</h3>
