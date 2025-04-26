@@ -5,255 +5,225 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Glowsy Galaxy Shop</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: #ffffff;
-    }
-    header {
-      background: #e3f2fd;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header h1 {
-      font-size: 1.5rem;
-      color: #333;
-    }
-    .search-bar input {
-      padding: 8px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-    }
-    .hamburger {
-      font-size: 24px;
-      cursor: pointer;
-      margin-left: 10px;
-    }
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      right: 20px;
-      top: 60px;
-      background: white;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      flex-direction: column;
-    }
-    .dropdown-menu.show {
-      display: flex;
-    }
-    .dropdown-menu a {
-      padding: 10px;
-      text-decoration: none;
-      color: #333;
-      border-bottom: 1px solid #eee;
-    }
-    nav {
-      background: #34495e;
-      padding: 10px;
-      text-align: center;
-    }
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-    }
-    main {
-      padding: 20px;
-    }
-    footer {
-      background: #1e2a38;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; overflow-x: hidden; font-family: 'Poppins', sans-serif; background-color: #ffffff; color: #333; }
 
-    /* Modal Login Style */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      overflow: auto;
-      background: rgba(0,0,0,0.5);
-      backdrop-filter: blur(5px);
-      justify-content: center;
+    header {
+      background-color: #e3f2fd;
+      color: #1e2a38;
+      display: flex;
       align-items: center;
-    }
-    .modal-content {
-      background: #fff;
-      padding: 30px;
-      border-radius: 8px;
-      width: 300px;
-      text-align: center;
-      box-shadow: 0px 8px 20px rgba(0,0,0,0.3);
+      padding: 10px 20px;
+      justify-content: space-between;
       position: relative;
     }
-    .modal-content input {
+    header h1 {
+      font-size: 0.8rem;
+      margin-right: 20px;
+      background: linear-gradient(270deg, #ff8a00, #e52e71, #6a11cb, #ff8a00);
+      background-size: 600% 600%;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 8s ease infinite;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .login-btn, .user-info-btn {
+      background-color: #f39c12;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+    }
+    .login-btn:hover, .user-info-btn:hover {
+      background-color: #c87509;
+    }
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    /* Modal Style */
+    .modal {
+      display: none; 
+      position: fixed; 
+      z-index: 999;
+      padding-top: 60px; 
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 10px;
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close:hover, .close:focus {
+      color: black;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group input {
       width: 100%;
       padding: 10px;
-      margin: 10px 0;
+      margin-top: 5px;
       border: 1px solid #ccc;
       border-radius: 5px;
     }
-    .modal-content button {
-      background: #007bff;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      margin-top: 10px;
+    .form-switch {
+      text-align: center;
+      margin-top: 15px;
       cursor: pointer;
-    }
-    .close {
-      position: absolute;
-      right: 10px;
-      top: 10px;
-      cursor: pointer;
-      font-size: 20px;
-    }
-    #toast {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #333;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 30px;
-      display: none;
-      z-index: 2000;
-      font-size: 14px;
+      color: #f39c12;
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <h1>Glowsy Galaxy Shop</h1>
-  <div style="display: flex; align-items: center;">
-    <div class="search-bar">
-      <input type="text" placeholder="Search..." />
+  <header>
+    <h1>Glowsy Galaxy Shop</h1>
+    <div id="userSection">
+      <button class="login-btn" onclick="openModal()">Login/Signup</button>
     </div>
-    <div class="hamburger" onclick="toggleMenu()">☰</div>
+  </header>
+
+  <!-- Login/Signup Modal -->
+  <div id="authModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="formTitle">Login</h2>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="email" placeholder="Enter email" required>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Enter password" required>
+      </div>
+      <button class="login-btn" onclick="handleAuth()">Submit</button>
+      <div class="form-switch" onclick="switchForm()">Don't have an account? Register</div>
+    </div>
   </div>
-  <div class="dropdown-menu" id="dropdownMenu">
-    <a href="#">Home</a>
-    <a href="#">Shop</a>
-    <a href="#contact">Contact</a>
-    <a href="#" id="loginLink">Login</a>
-    <a href="#" id="logoutLink" style="display:none;">Logout</a>
-  </div>
-</header>
 
-<nav>
-  <a href="#">Home</a>
-  <a href="#">Trending</a>
-  <a href="#">About</a>
-</nav>
+  <script>
+    // Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCfiuZR7YHjsMm2ZD5ODWkpyqB3OvwDxoQ",
+      authDomain: "glowsy-galaxy-shop-518c2.firebaseapp.com",
+      projectId: "glowsy-galaxy-shop-518c2",
+      storageBucket: "glowsy-galaxy-shop-518c2.appspot.com",
+      messagingSenderId: "593285937055",
+      appId: "1:593285937055:web:91e7edcd92834a42f22faa",
+      measurementId: "G-QLFBVFNTN1"
+    };
 
-<main>
-  <h2>Welcome to Glowsy Galaxy Shop</h2>
-  <p>Premium LED Mirrors and Home Decor!</p>
-</main>
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
 
-<footer>
-  &copy; 2025 Glowsy Galaxy Shop
-</footer>
+    // Modal Functions
+    const modal = document.getElementById('authModal');
+    const formTitle = document.getElementById('formTitle');
+    let isLogin = true;
 
-<!-- Login Modal -->
-<div class="modal" id="loginModal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <h2>Login</h2>
-    <input type="email" id="email" placeholder="Email Address" />
-    <input type="password" id="password" placeholder="Password" />
-    <button onclick="login()">Login</button>
-  </div>
-</div>
-
-<div id="toast"></div>
-
-<!-- Firebase SDK -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js";
-  import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyCfiuZR7YHjsMm2ZD5ODWkpyqB3OvwDxoQ",
-    authDomain: "glowsy-galaxy-shop-518c2.firebaseapp.com",
-    projectId: "glowsy-galaxy-shop-518c2",
-    storageBucket: "glowsy-galaxy-shop-518c2.appspot.com",
-    messagingSenderId: "593285937055",
-    appId: "1:593285937055:web:91e7edcd92834a42f22faa",
-    measurementId: "G-QLFBVFNTN1"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  const auth = getAuth(app);
-
-  window.toggleMenu = function() {
-    const menu = document.getElementById('dropdownMenu');
-    menu.classList.toggle('show');
-  }
-
-  // Open login modal
-  document.getElementById('loginLink').addEventListener('click', function() {
-    document.getElementById('loginModal').style.display = 'flex';
-  });
-
-  window.closeModal = function() {
-    document.getElementById('loginModal').style.display = 'none';
-  }
-
-  window.login = function() {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        showToast("Login Successful!");
-        closeModal();
-      })
-      .catch((error) => {
-        showToast(error.message);
-      });
-  }
-
-  document.getElementById('logoutLink').addEventListener('click', function() {
-    signOut(auth).then(() => {
-      showToast("Logged out successfully!");
-    }).catch((error) => {
-      console.error(error);
-    });
-  });
-
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      document.getElementById('loginLink').style.display = 'none';
-      document.getElementById('logoutLink').style.display = 'block';
-    } else {
-      document.getElementById('loginLink').style.display = 'block';
-      document.getElementById('logoutLink').style.display = 'none';
+    function openModal() {
+      modal.style.display = 'block';
     }
-  });
 
-  function showToast(message) {
-    const toast = document.getElementById('toast');
-    toast.textContent = message;
-    toast.style.display = 'block';
-    setTimeout(() => {
-      toast.style.display = 'none';
-    }, 3000);
-  }
-</script>
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    function switchForm() {
+      isLogin = !isLogin;
+      formTitle.textContent = isLogin ? 'Login' : 'Register';
+      document.querySelector('.form-switch').innerHTML = isLogin ? "Don't have an account? Register" : "Already have an account? Login";
+    }
+
+    function handleAuth() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      if (isLogin) {
+        auth.signInWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+            alert('Login Successful!');
+            closeModal();
+          })
+          .catch((error) => {
+            alert(error.message);
+          });
+      } else {
+        auth.createUserWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+            alert('Registration Successful!');
+            closeModal();
+          })
+          .catch((error) => {
+            alert(error.message);
+          });
+      }
+    }
+
+    // Listen for auth state changes
+    auth.onAuthStateChanged((user) => {
+      const userSection = document.getElementById('userSection');
+      if (user) {
+        const email = user.email;
+        userSection.innerHTML = `
+          <div class="user-info">
+            <button class="user-info-btn">${email}</button>
+            <button class="login-btn" onclick="logout()">Logout</button>
+          </div>
+        `;
+      } else {
+        userSection.innerHTML = `<button class="login-btn" onclick="openModal()">Login/Signup</button>`;
+      }
+    });
+
+    function logout() {
+      auth.signOut()
+        .then(() => {
+          alert('Logged out!');
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    }
+  </script>
 
 </body>
 </html>
