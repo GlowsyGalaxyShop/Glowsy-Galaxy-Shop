@@ -52,7 +52,7 @@
     }
     .hamburger {
       font-size: 26px;
-      margin-left: 15px;
+      margin-left: 015px;
       cursor: pointer;
       user-select: none;
       padding: 6px 10px;
@@ -247,19 +247,40 @@
       text-align: center;
     }
     .testimonial-card h4 {
-      margin-top: 10px;
+      margin-top: 10px; /* Added space between review and name */
     }
     .dropdown-menu.show {
       display: flex;
     }
   </style>
 </head>
+<script>
+  function toggleMenu() {
+    var menu = document.getElementById('dropdownMenu');
+    menu.classList.toggle('show');
+  }
+
+  function searchProducts() {
+    var input = document.getElementById('searchInput').value.toLowerCase();
+    var productCards = document.querySelectorAll('.product-card');
+
+    productCards.forEach(function(card) {
+      var title = card.querySelector('.product-info h3').innerText.toLowerCase();
+      if (title.includes(input)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>
 <body>
   <header>
     <h1>Glowsy Galaxy Shop</h1>
     <div style="display: flex; align-items: center;">
-      <div class="search-bar">
-        <input type="text" placeholder="Search products..." />
+<div class="search-bar">
+  <input type="text" id="searchInput" placeholder="Search products..." oninput="searchProducts()" />
+</div>
       </div>
       <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
       <div class="dropdown-menu" id="dropdownMenu">
@@ -286,6 +307,9 @@
     </div>
   </section>
   <section class="carousel-container" id="carousel">
+      <div id="noProductsMessage" style="text-align: center; padding: 20px; display: none; font-size: 1.2rem; color: #888;">
+  No products found.
+</div>
     <div class="product-card">
       <div class="product-image">
         <img src="https://via.placeholder.com/300x160" alt="Product 1">
@@ -294,7 +318,8 @@
         <h3>Led Mirror 2.2</h3>
         <p>Condition: Excellent</p>
         <div class="price">₹2999.99</div>
-        <a href="https://wa.me/9871486231?text=I%20am%20interested%20in%20Led%20Mirror%202.2%20from%20Glowsy%20Galaxy%20Shop" class="btn">Buy Now</a>
+        <a href="https://wa.me/9871486231?text=I%20am%20interested%20in%20Led%20Mirror%202.2%20from%20Glowsy%20Galaxy%20Shop"
+           class="btn">Buy Now</a>
       </div>
     </div>
     <div class="product-card">
@@ -305,7 +330,8 @@
         <h3>Led Mirror</h3>
         <p>Condition: Good</p>
         <div class="price">₹1999.99</div>
-        <a href="https://wa.me/9871486231?text=I%20am%20interested%20in%20Led%20Mirror%20from%20Glowsy%20Galaxy%20Shop" class="btn">Buy Now</a>
+        <a href="https://wa.me/9871486231?text=I%20am%20interested%20in%20Led%20Mirror%20from%20Glowsy%20Galaxy%20Shop"
+           class="btn">Buy Now</a>
       </div>
     </div>
     <div class="product-card">
@@ -316,7 +342,8 @@
         <h3>LED Mirror 1.0</h3>
         <p>Condition: Like New</p>
         <div class="price">₹1599.99</div>
-        <a href="https://wa.me/9871486231?text=I%20am%20interested%20in%20LED%20Mirror%201.0%20from%20Glowsy%20Galaxy%20Shop" class="btn">Buy Now</a>
+        <a href="https://wa.me/9871486231?text=I%20am%20interested%20in%20LED%20Mirror%201.0%20from%20Glowsy%20Galaxy%20Shop"
+           class="btn">Buy Now</a>
       </div>
     </div>
   </section>
