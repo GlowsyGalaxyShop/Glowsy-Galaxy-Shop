@@ -4,7 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Glowsy Galaxy Shop</title>
+  <meta name="description" content="Glowsy Galaxy Shop offers premium LED mirrors and stylish home decor. Shop quality lighting and decor for your space." />
+<meta name="keywords" content="LED mirrors, home decor, lighting, modern mirrors, Glowsy Galaxy Shop" />
+<meta name="author" content="Glowsy Galaxy Shop" />
+<meta name="robots" content="index, follow" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     * {
       margin: 0;
@@ -252,6 +257,34 @@
     .dropdown-menu.show {
       display: flex;
     }
+    @media (max-width: 768px) {
+  .product-card {
+    width: 90%;
+    margin: 10px auto;
+  }
+
+  .carousel-container {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero h2 {
+    font-size: 1.5rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .testimonial-card {
+    width: 90%;
+    margin: 10px auto;
+  }
+
+  .search-bar input {
+    width: 100%;
+  }
+}
   </style>
 </head>
 <script>
@@ -367,8 +400,19 @@
     <p>Email: glowsygalaxyshop@gmail.com</p>
   </section>
   <footer>
-    <p>&copy; 2025 Glowsy Galaxy Shop. All rights reserved.</p>
-  </footer>
+  <p>&copy; 2025 Glowsy Galaxy Shop. All rights reserved.</p>
+  <div style="margin-top: 10px;">
+    <a href="https://facebook.com/YourPage" target="_blank" style="color: white; margin: 0 10px; font-size: 1.5rem;">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://instagram.com/YourPage" target="_blank" style="color: white; margin: 0 10px; font-size: 1.5rem;">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://twitter.com/YourPage" target="_blank" style="color: white; margin: 0 10px; font-size: 1.5rem;">
+      <i class="fab fa-twitter"></i>
+    </a>
+  </div>
+</footer>
   <script>
     function toggleMenu() {
       var menu = document.getElementById('dropdownMenu');
